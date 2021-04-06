@@ -1,5 +1,9 @@
 packages/!README.md
-zeppelin/interpreter/pgx/*
-zeppelin/notebook/*
 jupyter/work/*
 scripts/oracle-graph-plsql/*
+graphs/customer_360
+graphs/moneyflows
+graphs/online_retail
+graphs/maas
+graphs/openflights
+graphs/taxf_fraud

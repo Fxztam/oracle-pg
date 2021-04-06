@@ -11,7 +11,7 @@ Architecture:
 After setting up this demo environment, you can also try:
 
 - [customer_360](./graphs/customer_360/README.md) - Customer 360 analysis in banking [3-tier deployment]
-- [online_retail](./graphs/online_retail/README.md) - Recommendation system in online retail [3-tier deployment]
+- [online_retail](https://github.com/ryotayamanaka/online_retail) - Recommendation system in online retail [3-tier deployment]
 - [moneyflows](https://github.com/ryotayamanaka/moneyflows) - Find patterns from large money transfer networks [3-tier deployment]
 - [mule_account](./graphs/mule_account/README.md) - Fake account detection in fraud analysis [3-tier deployment]
 - [shortest-path](https://github.com/ryotayamanaka/shortest-path) - Simple example of shortest path queries [PGX standalone]
@@ -39,22 +39,21 @@ Build the image.
 ## Clone this Repository
 
     $ cd <your-work-directory>
-    $ git clone https://github.com/ryotayamanaka/oracle-pg.git -b 20.4
+    $ git clone https://github.com/ryotayamanaka/oracle-pg.git -b 21.1
 
 ## Download and Extract Packages for Graph Server and Client
 
 Go to the following pages and download the packages.
 
-* [Oracle Graph Server and Client 20.4](https://www.oracle.com/database/technologies/spatialandgraph/property-graph-features/graph-server-and-client/graph-server-and-client-downloads.html)
-* [Apache Groovy 2.4.20](https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.20.zip)
+* [Oracle Graph Server and Client 21.1](https://www.oracle.com/database/technologies/spatialandgraph/property-graph-features/graph-server-and-client/graph-server-and-client-downloads.html)
+* [Oracle JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) (No cost for personal use and development use)
 
 Put the following files to `oracle-pg/packages/`
  
-- oracle-graph-20.4.0.x86_64.rpm
-- oracle-graph-client-20.4.0.zip
-- oracle-graph-zeppelin-interpreter-20.4.0.zip
-- oracle-graph-plsql-20.4.0.zip
-- apache-groovy-binary-2.4.20.zip
+- oracle-graph-21.1.0.x86_64.rpm
+- oracle-graph-client-21.1.0.zip
+- oracle-graph-plsql-21.1.0.zip
+- jdk-11.0.10_linux-x64_bin.rpm
 
 Run the following script to extract packages:
 
@@ -88,8 +87,9 @@ Configure Property Graph features. This script was extracted from oracle-graph-p
     SQL> @/home/oracle/scripts/oracle-graph-plsql/19c_and_above/opgremov.sql
     SQL> @/home/oracle/scripts/oracle-graph-plsql/19c_and_above/catopg.sql
 
-Create user roles (graph_developer, graph_administrator) and users (graph_dev, graph_admin).
+Create user roles (graph_developer, graph_administrator, and PGX roles) and sample users (graph_dev, graph_admin).
 
+    SQL> @/home/oracle/scripts/create_roles.sql
     SQL> @/home/oracle/scripts/create_users.sql
     SQL> EXIT
 
@@ -104,9 +104,8 @@ Build and pull images, create containers, and start them.
 
 Access Graph Visualization and Zeppelin to start graph analytics. Please use **FireFox**.
 
-* Graph Visualization - http://localhost:7007/ui/ (User: graph_dev, Password: Welcome1)
+* Graph Visualization - https://localhost:7007/ui/ (User: graph_dev, Password: WELcome123##)
 * Jupyter - http://localhost:8888/
-* Zeppelin - http://localhost:8080/#/
 
 To stop, restart, or remove the containers, see [Appendix 2](#appendix-2).
 

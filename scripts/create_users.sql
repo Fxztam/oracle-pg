@@ -1,13 +1,10 @@
-CREATE ROLE graph_developer;
-CREATE ROLE graph_administrator;
-
-CREATE USER graph_dev IDENTIFIED BY Welcome1 
+CREATE USER graph_dev IDENTIFIED BY WELcome123##
 DEFAULT TABLESPACE users
 TEMPORARY TABLESPACE temp
 QUOTA UNLIMITED ON users;
 GRANT connect, resource TO graph_dev;
 
-CREATE USER graph_admin IDENTIFIED BY Welcome1 
+CREATE USER graph_admin IDENTIFIED BY WELcome123##
 DEFAULT TABLESPACE users
 TEMPORARY TABLESPACE temp
 QUOTA UNLIMITED ON users;

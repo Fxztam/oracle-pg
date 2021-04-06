@@ -1,12 +1,20 @@
-FROM oraclelinux:7-slim
-ARG VERSION
-COPY ./packages/oracle-graph-${VERSION}.x86_64.rpm /tmp
-RUN yum install -y java-11-openjdk-devel unzip expect numactl vim \
+FROM oraclelinux:7
+ARG VERSION_JDK
+ARG VERSION_OPG
+COPY ./packages/jdk-${VERSION_JDK}_linux-x64_bin.rpm /tmp
+COPY ./packages/oracle-graph-${VERSION_OPG}.x86_64.rpm /tmp
+RUN yum install -y unzip numactl vim python3 openssl \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && rpm -ivh /tmp/oracle-graph-${VERSION}.x86_64.rpm \
- && rm /tmp/oracle-graph-${VERSION}.x86_64.rpm
+ && rpm -ivh /tmp/jdk-${VERSION_JDK}_linux-x64_bin.rpm \
+ && rpm -ivh /tmp/oracle-graph-${VERSION_OPG}.x86_64.rpm
 EXPOSE 7007
-ENV PATH=$PATH:/opt/oracle/graph/pgx/bin
-WORKDIR /opt/oracle/graph/pgx/bin
-CMD ["sh", "start-server"]
+ENV JAVA_HOME=/usr/java/jdk-11.0.10
+ENV PATH=$PATH:/opt/oracle/graph/bin
+ENV SSL_CERT_FILE=/etc/oracle/graph/ca_certificate.pem
+RUN keytool -import -trustcacerts \
+    -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit \
+    -alias pgx -file /etc/oracle/graph/ca_certificate.pem -noprompt \
+ && pip3 install pyjnius
+WORKDIR /opt/oracle/graph/bin
+CMD ["sh", "/opt/oracle/graph/pgx/bin/start-server"]

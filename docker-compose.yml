@@ -1,6 +1,3 @@
-# Notes
-# - depends_on is not effective enough to control the dependency
-
 version: '3'
 services:
   graph-server:
@@ -8,53 +5,16 @@ services:
       context: .
       dockerfile: Dockerfile-server
       args:
-        - VERSION=20.4.0
-    image: graph-server:20.4.0
+        - VERSION_OPG=21.1.0
+        - VERSION_JDK=11.0.10
+    image: graph-server:21.1.0
     ports:
       - "7007:7007"
     depends_on:
       - "database"
     volumes:
-     - ./graphs:/graphs
-     - ./conf/pgx.conf:/etc/oracle/graph/pgx.conf
-     - ./conf/server.conf:/etc/oracle/graph/server.conf
-     - ./keystore.p12:/opt/oracle/keystore.p12
-    networks:
-      - network
-    command: >
-      expect -c "
-        set timeout 3
-        spawn start-server --secret-store /opt/oracle/keystore.p12
-        expect \"enter password for keystore /opt/oracle/keystore.p12:\"
-        send \"oracle\n\"
-        interact
-      "
-    stdin_open: true
-    tty: true
-  graph-client:
-    build:
-      context: .
-      dockerfile: Dockerfile-client
-      args:
-        - VERSION=20.4.0
-    image: graph-client:20.4.0
-    volumes:
-     - ./graphs:/graphs
-     - ./keystore.p12:/opt/oracle/keystore.p12
-    networks:
-      - network
-    tty: true
-  zeppelin:
-    image: apache/zeppelin:0.8.2
-    ports:
-      - "8080:8080"
-    depends_on:
-      - "graph-server"
-    volumes:
       - ./graphs:/graphs
-      - ./zeppelin/conf/zeppelin-site.xml:/zeppelin/conf/zeppelin-site.xml
-      - ./zeppelin/interpreter/pgx:/zeppelin/interpreter/pgx
-      - ./zeppelin/notebook:/zeppelin/notebook
+      - ./pgx.conf:/etc/oracle/graph/pgx.conf
     networks:
       - network
   database:
@@ -65,7 +25,7 @@ services:
       - ./graphs:/graphs
       - ./scripts:/home/oracle/scripts
     environment:
-      - ORACLE_PWD=Welcome1
+      - ORACLE_PWD=WELcome123##
     networks:
       - network
   jupyter:
@@ -74,8 +34,8 @@ services:
       context: .
       dockerfile: Dockerfile-jupyter
       args:
-        - VERSION=20.4.0
-    image: jupyter:20.4.0
+        - VERSION=21.1.0
+    image: jupyter:21.1.0
     volumes:
      - ./graphs:/graphs
      - ./jupyter/work:/home/jovyan/work
