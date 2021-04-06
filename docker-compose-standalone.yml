@@ -1,0 +1,14 @@
+version: '3'
+services:
+  standalone:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+      args:
+        - VERSION_OPG=21.1.0
+        - VERSION_JDK=11.0.10
+    image: graph-server:21.1.0
+    volumes:
+     - ./graphs:/graphs
+    command: /bin/bash
+    tty: true
