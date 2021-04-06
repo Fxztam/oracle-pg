@@ -8,9 +8,9 @@ Architecture:
 
 ![](https://user-images.githubusercontent.com/4862919/80330080-632e9a00-886e-11ea-822e-0a96e40dbbf9.jpg)
 
-After setting up this demo environment, you can also try:
+After setting up this demo environment, please try:
 
-- [customer_360](./graphs/customer_360/README.md) - Customer 360 analysis in banking [3-tier deployment]
+- [customer_360](https://github.com/ryotayamanaka/customer_360) - Customer 360 analysis in banking [3-tier deployment]
 - [online_retail](https://github.com/ryotayamanaka/online_retail) - Recommendation system in online retail [3-tier deployment]
 - [moneyflows](https://github.com/ryotayamanaka/moneyflows) - Find patterns from large money transfer networks [3-tier deployment]
 - [mule_account](./graphs/mule_account/README.md) - Fake account detection in fraud analysis [3-tier deployment]
@@ -80,7 +80,7 @@ Start the containers for **Oracle Database** only first.
 Connect to the Oracle Database server. See [Appendix 1](#appendix-1) if you get an error.
 
     $ cd oracle-pg/
-    $ docker-compose exec database sqlplus sys/Welcome1@orclpdb1 as sysdba
+    $ docker-compose exec database sqlplus sys/WELcome123##@orclpdb1 as sysdba
 
 Configure Property Graph features. This script was extracted from oracle-graph-plsql-xx.x.x.zip.
 
@@ -93,7 +93,7 @@ Create user roles (graph_developer, graph_administrator, and PGX roles) and samp
     SQL> @/home/oracle/scripts/create_users.sql
     SQL> EXIT
 
-## Start Containers (Graph Server, Graph Client, and Zeppelin)
+## Start Containers (Graph Server and Jupyter)
 
 Build and pull images, create containers, and start them.
 
