@@ -1,6 +1,6 @@
-# Oracle Property Graph
+# Property Graph feature or Oracle Database
 
-The docker image build files, sample datasets, and use case exmaples, for Oracle Property Graph.
+The Docker-based setup instruction for the Property Graph feature of Oracle Database.
 
 **The scripts here are my own. Not Oracle's official material.**
 
