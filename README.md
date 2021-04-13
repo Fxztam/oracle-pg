@@ -1,4 +1,4 @@
-# Property Graph feature or Oracle Database
+# Property Graph feature of Oracle Database
 
 The Docker-based setup instruction for the Property Graph feature of Oracle Database.
 
