@@ -1,16 +1,18 @@
-# Oracle Property Graph
+# Oracle's Property Graph
 
-The setup instruction and use case exmaples for Oracle's Property Graph.
+The setup instruction and use case exmaples of the Property Graph feature of Oracle Database.
 
 **The scripts here are my own. Not Oracle's official material.**
 
 ## Architecture
 
+This is how Graph Server and Oracle Database are deployed:
+
 ![](./images/architecture.jpg)
 
 ## Setup Instruction
 
-There are several quick ways to setup Graph Server:
+There are some quick ways to setup Graph Server:
 
 - [with Autonomous Database](https://github.com/ryotayamanaka/setup_pg_adb)
 - [with Database Cloud Service](https://github.com/ryotayamanaka/setup_pg_dbcs)
